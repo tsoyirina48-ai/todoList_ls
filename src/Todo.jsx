@@ -31,6 +31,7 @@ export default function Todo({ data, checkUpdate, deleteTodo, updateTodo }) {
     };
     return (
     <>
+    {mode === 'read' && (
     <div className="d-flex justify-content-between align-items-center mb-2">
       <Form.Check
         type="checkbox"
@@ -52,7 +53,9 @@ export default function Todo({ data, checkUpdate, deleteTodo, updateTodo }) {
            </Button>
         </div>
      </div>
-     <Form onSubmit={e => {
+    )}
+    {mode === 'edit' && (
+     <Form onSubmit={(e) => {
         e.preventDefault();
        updateTodo(data.id, title);
        
@@ -72,6 +75,7 @@ export default function Todo({ data, checkUpdate, deleteTodo, updateTodo }) {
       <Button type ="button" variant="secondary" size="sm" onClick={changeToRead}>취소</Button>
     </div>
   </Form>
+    )}
     </>
   );
 }
